@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Dir.glob('../prefectures/*.html') do |filename|
+  html_content = File.open(filename)
+  doc = Nokogiri::HTML(html_content)
+  doc.search('.entry-content').each do |element|
+    # puts filename.match(/(\w+)\./).to_a[0].capitalize[0..-2]
+    puts element.text.scan(/of(.+)\b/)
+  end
+end
