@@ -1,6 +1,6 @@
 require 'nokogiri'
 
-filepath = "./results.html"
+filepath = "db/prefectures/tokyo.html"
 html_content = File.open(filepath)
 doc = Nokogiri::HTML(html_content)
 doc.search('#post-body-1523308068074273552').each do |element|
