@@ -4,7 +4,7 @@
 Dir.glob('db/prefectures/*.html') do |filename|
   html_content = File.open(filename)
   doc = Nokogiri::HTML(html_content)
-  doc.search('.entry-content').each do |element|
+  doc.search('.content').each do |element|
     post_codes = element.text.scan(/[0-9]{3}-[0-9]{4}/)
     cities = element.text.scan(/of(.+), Japan/)
     post_codes.each_with_index do |post_code, index|
