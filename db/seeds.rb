@@ -4,6 +4,7 @@
 Dir.glob('db/prefectures/*.html') do |filename|
   html_content = File.open(filename)
   doc = Nokogiri::HTML(html_content)
+  zone = doc.search('.zone').inner_html.strip.to_i
   doc.search('.content').each do |element|
     post_codes = element.text.scan(/[0-9]{3}-[0-9]{4}/)
     cities = element.text.scan(/of(.+), Japan/)
@@ -11,6 +12,7 @@ Dir.glob('db/prefectures/*.html') do |filename|
       area = Area.new
       area.city = cities[index].join.strip
       area.post_code = post_code
+      area.zone = zone
       area.save!
     end
   end
