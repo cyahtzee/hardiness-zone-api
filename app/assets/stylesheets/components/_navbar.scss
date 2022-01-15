@@ -1,12 +1,17 @@
-.navbar-lewagon {
+.navbar-jhza {
   justify-content: space-between;
   background: white;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-title {
+  font-size: medium;
+  margin: 0;
+}
+
+.navbar-jhza .navbar-collapse {
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-jhza .navbar-brand img {
   width: 40px;
 }
