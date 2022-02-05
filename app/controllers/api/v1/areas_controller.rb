@@ -5,11 +5,16 @@ class Api::V1::AreasController < Api::V1::BaseController
 
   def show
     @post_code = params[:query]
+    counter = -1
     @area = Area.find_by post_code: @post_code
-    # need a route if it doesn't find the post_code, maybe target the
-    # first 3 numbers and return all the available? for Tokyo it's very
-    # broad, some of them have 4 numbers so get that first, otherwise the
-    # first 3
+    if @area.nil?
+      until @area.nil? == false
+        @area = Area.find_by post_code: @post_code
+        @post_code[counter] = "0"
+        counter = counter -1
+      end
+      @area
+    end
     authorize @area
   end
 end
